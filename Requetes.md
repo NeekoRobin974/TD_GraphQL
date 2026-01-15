@@ -134,8 +134,50 @@ PraticiensParis: Praticien(filter: { ville: { _eq: "Paris" } }) {
     }
 }
 ```
-
 ![Résultat requête 7](./Images_Requetes/requete_7-2.png)
 ![Résultat requête 7](./Images_Requetes/requete_7-1.png)
+
+8)Transformer la requête précédente de façon à utiliser un fragment correspondant aux champs
+du résultat.
+```graphql
+fragment champsPraticien on Praticien {
+        id
+        nom
+        prenom
+        ville
+        specialite_id {
+            libelle
+        }
+    }
+
+query {
+    PraticiensParis: Praticien(filter: { ville: {_eq: "Paris"} }){
+    ...champsPraticien
+    }
+    PraticiensBourdon: Praticien(filter: { ville: {_eq: "Bourdon-les-Bains"} }){
+    ...champsPraticien
+    }
+}
+```
+![Résultat requête 8](./Images_Requetes/requete_8.png)
+
+
+
+9)Transformer la requête 3 pour utiliser une variable de façon à paramétrer la requête par le
+nom de la ville souhaitée.
+```graphql
+query Requete9($ville: String!) {
+    Praticien(filter: { ville: { _eq: $ville } }) {
+        id
+        nom
+        prenom
+        telephone
+        specialite_id {
+            libelle
+        }
+    }
+}
+```
+![Résultat requête 9](./Images_Requetes/requete_9.png)
 
 10) Liste des structures, en indiquant leur nom et ville,  en ajoutant la liste des praticiens attachés à chaque structure en indiquant leur nom, prénom, email ainsi que le libellé de leur spécialité.
