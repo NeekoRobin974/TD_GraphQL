@@ -89,3 +89,23 @@ query {
     }
 }
 ```
+![Résultat requête 5](./Images_Requetes/requete_5.png)
+
+6) Lister les praticiens rattachés à une structure dont la ville est "Paris".
+```graphql
+query {
+    Praticien (filter: { structure_id: { ville: { _eq: "Paris" } } }) {
+        id
+        nom
+        prenom
+        telephone
+        structure_id {
+            nom
+            ville
+        }
+    }
+}
+```
+![Résultat requête 6](./Images_Requetes/requete_6.png)
+
+10) Liste des structures, en indiquant leur nom et ville,  en ajoutant la liste des praticiens attachés à chaque structure en indiquant leur nom, prénom, email ainsi que le libellé de leur spécialité. 
