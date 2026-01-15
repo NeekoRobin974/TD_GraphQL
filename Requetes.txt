@@ -1,21 +1,11 @@
-Liste des praticiens
-http://localhost:8055/items/Praticien
+POST http://localhost:8055/graphql
 
-La spécialité d’ID 2
-http://localhost:8055/items/Specialite/2
-
-La spécialité d’ID 2, avec uniquement son  libellé
-http://localhost:8055/items/Specialite/2?fields=libelle
-
-Un praticien avec sa spécialité (libellé)
-http://localhost:8055/items/Praticien?fields=nom,prenom,specialite.libelle
-
-Une structure (nom, ville) et la liste des praticiens rattachés (nom, prenom)
-http://localhost:8055/items/Structure?fields=nom,ville,praticien.nom,praticien.prenom
-
-Idem en ajoutant le libellé de la spécialité des praticiens
-http://localhost:8055/items/Structure?fields=nom,ville,praticien.nom,praticien.prenom,praticien.specialite.libelle
-
-Les structures dont le nom de la ville contient "sur" avec la liste des praticiens (nom,
-prénom, spécialité).
-http://localhost:8055/items/Structure?fields=nom,ville,praticien.nom,praticien.prenom,praticien.specialite.libelle&filter[ville][_contains]=sur
+1)
+query {
+    Praticien {
+        id
+        nom
+        prenom
+        telephone
+    }
+}
