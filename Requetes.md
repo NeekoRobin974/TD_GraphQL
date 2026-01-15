@@ -46,3 +46,23 @@ query {
 }
 ```
 ![Résultat requête 3](./Images_Requetes/requete_3.png)
+
+4) Idem, en ajoutant le nom et la ville de la structure d’appartenance du praticien,
+```graphql
+query {
+    Praticien (filter: { ville: {_eq : "Paris"}}) {
+        id
+        nom
+        prenom
+        telephone
+        specialite_id {
+            libelle
+        }
+        structure_id {
+            nom
+            ville
+        }
+    }
+}
+```
+![Résultat requête 4](./Images_Requetes/requete_4.png)
