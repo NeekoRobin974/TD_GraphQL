@@ -66,3 +66,26 @@ query {
 }
 ```
 ![Résultat requête 4](./Images_Requetes/requete_4.png)
+
+5) Idem, en ajoutant un filtre pour retenir les emails contenant ".fr"
+```graphql
+query {
+    Praticien (filter: {
+            ville: { _eq: "Paris" },
+            email: { _contains: ".fr" }
+        }) {
+        id
+        nom
+        prenom
+        telephone
+        email
+        specialite_id {
+            libelle
+        }
+        structure_id {
+            nom
+            ville
+        }
+    }
+}
+```
