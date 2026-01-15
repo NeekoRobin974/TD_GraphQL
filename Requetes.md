@@ -89,3 +89,31 @@ query {
     }
 }
 ```
+
+7) Requête retournant une liste de praticiens installés à Paris et une liste de praticiens installés à Bourdon-les-Bains ; utiliser des alias
+
+```graphql
+query {
+PraticiensParis: Praticien(filter: { ville: { _eq: "Paris" } }) {
+    id
+    nom
+    prenom
+    ville
+    specialite_id {
+    libelle
+    }
+}
+
+    PraticiensBourdon: Praticien(filter: { ville: { _eq: "Bourdon-les-Bains" } }) {
+        id
+        nom
+        prenom
+        ville
+        specialite_id {
+            libelle
+        }
+    }
+}
+```
+![Résultat requête 7](./Images_Requetes/requete_7-2.png)
+![Résultat requête 7](./Images_Requetes/requete_7-1.png)
