@@ -232,7 +232,7 @@ mutation CreateSpecialite {
 ```
 ![Résultat mutation1](./Images_Requetes/Mutation_1.png)
 
-2. créer un praticien: nom, prénom, ville, email, téléphone
+2) Créer un praticien: nom, prénom, ville, email, téléphone
 
 ```
 mutation CreatePraticien {
@@ -247,7 +247,7 @@ mutation CreatePraticien {
 }
 ```
 ![Résultat mutation2](./Images_Requetes/Mutation_2.png)
-3. modifier le praticien pour le rattacher à la spécialité «cardiologie»
+3) Modifier le praticien pour le rattacher à la spécialité «cardiologie»
 
 ```
 mutation ModifierPraticien {
@@ -266,7 +266,7 @@ mutation ModifierPraticien {
 ```
 ![Résultat mutation3](./Images_Requetes/Mutation_3.png)
 
-4. créer un praticien en le rattachant à la spécialité «cardiologie»
+4) Créer un praticien en le rattachant à la spécialité «cardiologie»
 ```
 mutation CreatePraticien {
     create_Praticien_item(data: { nom: "Wick", prenom: "John", ville: "Paris", email: "John@test.com", telephone: "0620202020", specialite_id: {id:6} }) {
@@ -284,12 +284,42 @@ mutation CreatePraticien {
 ```
 ![Résultat mutation4](./Images_Requetes/Mutation_4.png)
 
-5. créer un praticien et créer en même temps sa spécialité «chirurgie»
-6. ajouter un praticien à la spécialité «chirurgie»
-7. modifier le premier praticien créé pour le rattacher à une structure existante
-8. supprimer les deux dernier praticiens créés.
+5) Créer un praticien et créer en même temps sa spécialité «chirurgie»
+```graphql
+mutation CreatePraticienEtSpecialite {
+    create_Praticien_item(data: {
+        nom: "Grey",
+        prenom: "Meredith",
+        ville: "Seattle",
+        email: "meredith@test.com",
+        telephone: "0600000001",
+        specialite_id: {
+            libelle: "chirurgie"
+        }
+    }) {
+        id
+        nom
+        prenom
+        specialite_id {
+            id
+            libelle
+        }
+    }
+}
+```
 ![Résultat mutation5](./Images_Requetes/Mutation_5.png)
-![Résultat mutation6](./Images_Requetes/Mutation_6.png)
-![Résultat mutation7](./Images_Requetes/Mutation_7.png)
-![Résultat mutation8](./Images_Requetes/Mutation_8.png)
 
+6) Ajouter un praticien à la spécialité «chirurgie»
+```graphql
+```
+![Résultat mutation6](./Images_Requetes/Mutation_6.png)
+
+7) Modifier le premier praticien créé pour le rattacher à une structure existante
+```graphql
+```
+![Résultat mutation7](./Images_Requetes/Mutation_7.png)
+
+8) Supprimer les deux derniers praticiens créés.
+```graphql
+```
+![Résultat mutation8](./Images_Requetes/Mutation_8.png)
