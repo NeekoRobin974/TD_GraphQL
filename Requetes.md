@@ -182,9 +182,44 @@ query Requete9($ville: String!) {
 
 10) Liste des structures, en indiquant leur nom et ville,  en ajoutant la liste des praticiens attachés à chaque structure en indiquant leur nom, prénom, email ainsi que le libellé de leur spécialité.
 
+## Autorisations dans Directus
+Sur Postman, les tables MoyenPaiement et MotifVisite disparaissent du schema si on met NoAuth.
+
+1) Lister les moyens de paiement (utilisateur utilisant un token statique)
+```graphql
+query MoyenPaiement {
+    MoyenPaiement {
+        id
+        libelle
+    }
+}
+```
+![Résultat requête 2.1](./Images_Requetes/requete_2.1.png)
+Si on se met en NoAuth :
+![Résultat requête 2.1 NoAuth](./Images_Requetes/requete_2.1_NoAuth.png)
 
 
-Migrations:
+2) Lister les spécialités en indiquant les motifs de visite associés à chacune (utilisateur utilisant un token JWT)
+
+Il faut d'abord se connecter et récupérer le token :
+![Récupération du token](./Images_Requetes/recup_token.png)
+Ensuite on peut faire la requête en précisant le token dans Authorization.
+```graphql
+query {
+    Specialite {
+        id
+        libelle
+        motifs {
+            id
+            libelle
+        }
+    }
+}
+```
+![Résultat requête 2.2 NoAuth](./Images_Requetes/requete_2.2.png)
+
+
+## Migrations:
 1) Créer la specialité «cardiologie»
 
 ```
@@ -247,8 +282,8 @@ mutation CreatePraticien {
     }
 }
 ```
-
 ![Résultat mutation4](./Images_Requetes/Mutation_4.png)
+
 5. créer un praticien et créer en même temps sa spécialité «chirurgie»
 6. ajouter un praticien à la spécialité «chirurgie»
 7. modifier le premier praticien créé pour le rattacher à une structure existante
@@ -257,3 +292,4 @@ mutation CreatePraticien {
 ![Résultat mutation6](./Images_Requetes/Mutation_6.png)
 ![Résultat mutation7](./Images_Requetes/Mutation_7.png)
 ![Résultat mutation8](./Images_Requetes/Mutation_8.png)
+
