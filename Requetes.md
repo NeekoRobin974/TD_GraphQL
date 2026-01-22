@@ -182,3 +182,78 @@ query Requete9($ville: String!) {
 
 10) Liste des structures, en indiquant leur nom et ville,  en ajoutant la liste des praticiens attachés à chaque structure en indiquant leur nom, prénom, email ainsi que le libellé de leur spécialité.
 
+
+
+Migrations:
+1) Créer la specialité «cardiologie»
+
+```
+mutation CreateSpecialite {
+  create_Specialite_item(data: { libelle: "cardiologie" }) {
+    id
+    libelle
+  }
+}
+```
+![Résultat mutation1](./Images_Requetes/Mutation_1.png)
+
+2. créer un praticien: nom, prénom, ville, email, téléphone
+
+```
+mutation CreatePraticien {
+  create_Praticien_item(data: { nom: "cardiologie", prenom: "Jean", ville: "Paris", email: "Jean@test.com", telephone: "0610101010" }) {
+    id
+    nom
+    prenom
+    ville
+    email
+    telephone
+  }
+}
+```
+![Résultat mutation2](./Images_Requetes/Mutation_2.png)
+3. modifier le praticien pour le rattacher à la spécialité «cardiologie»
+
+```
+mutation ModifierPraticien {
+  update_Praticien_item(id:"ddf74994-7606-4de3-8306-4a943f6ba703", data: { specialite_id: {id:"6"}}) {
+    id
+    nom
+    prenom
+    ville
+    email
+    telephone
+    specialite_id{
+        libelle
+    }
+  }
+}
+```
+![Résultat mutation3](./Images_Requetes/Mutation_3.png)
+
+4. créer un praticien en le rattachant à la spécialité «cardiologie»
+```
+mutation CreatePraticien {
+    create_Praticien_item(data: { nom: "Wick", prenom: "John", ville: "Paris", email: "John@test.com", telephone: "0620202020", specialite_id: {id:6} }) {
+        id
+        nom
+        prenom
+        ville
+        email
+        telephone
+        specialite_id{
+            libelle
+        }
+    }
+}
+```
+
+![Résultat mutation4](./Images_Requetes/Mutation_4.png)
+5. créer un praticien et créer en même temps sa spécialité «chirurgie»
+6. ajouter un praticien à la spécialité «chirurgie»
+7. modifier le premier praticien créé pour le rattacher à une structure existante
+8. supprimer les deux dernier praticiens créés.
+![Résultat mutation5](./Images_Requetes/Mutation_5.png)
+![Résultat mutation6](./Images_Requetes/Mutation_6.png)
+![Résultat mutation7](./Images_Requetes/Mutation_7.png)
+![Résultat mutation8](./Images_Requetes/Mutation_8.png)
