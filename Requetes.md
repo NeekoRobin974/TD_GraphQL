@@ -181,3 +181,4 @@ query Requete9($ville: String!) {
 ![Résultat requête 9](./Images_Requetes/requete_9.png)
 
 10) Liste des structures, en indiquant leur nom et ville,  en ajoutant la liste des praticiens attachés à chaque structure en indiquant leur nom, prénom, email ainsi que le libellé de leur spécialité.
+
