@@ -182,3 +182,37 @@ query Requete9($ville: String!) {
 
 10) Liste des structures, en indiquant leur nom et ville,  en ajoutant la liste des praticiens attachés à chaque structure en indiquant leur nom, prénom, email ainsi que le libellé de leur spécialité.
 
+## Autorisations dans Directus
+Sur Postman, les tables MoyenPaiement et MotifVisite disparaissent du schema si on met NoAuth.
+
+1) Lister les moyens de paiement (utilisateur utilisant un token statique)
+```graphql
+query MoyenPaiement {
+    MoyenPaiement {
+        id
+        libelle
+    }
+}
+```
+![Résultat requête 2.1](./Images_Requetes/requete_2.1.png)
+Si on se met en NoAuth :
+![Résultat requête 2.1 NoAuth](./Images_Requetes/requete_2.1_NoAuth.png)
+
+2) Lister les spécialités en indiquant les motifs de visite associés à chacune (utilisateur utilisant un token JWT)
+
+Il faut d'abord se connecter et récupérer le token :
+![Récupération du token](./Images_Requetes/recup_token.png)
+Ensuite on peut faire la requête en précisant le token dans Authorization.
+```graphql
+query {
+    Specialite {
+        id
+        libelle
+        motifs {
+            id
+            libelle
+        }
+    }
+}
+```
+![Résultat requête 2.2 NoAuth](./Images_Requetes/requete_2.2.png)
