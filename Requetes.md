@@ -311,6 +311,25 @@ mutation CreatePraticienEtSpecialite {
 
 6) Ajouter un praticien à la spécialité «chirurgie»
 ```graphql
+mutation CreatePraticienLierChirurgie {
+    create_Praticien_item(data: {
+        nom: "Rig",
+        prenom: "Sett",
+        ville: "Noxus",
+        email: "sett@test.com",
+        telephone: "0600000003",
+        specialite_id: {
+            id: "6" 
+        }
+    }) {
+        id
+        nom
+        specialite_id {
+            id
+            libelle
+        }
+    }
+}
 ```
 ![Résultat mutation6](./Images_Requetes/Mutation_6.png)
 
