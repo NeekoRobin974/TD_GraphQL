@@ -311,11 +311,48 @@ mutation CreatePraticienEtSpecialite {
 
 6) Ajouter un praticien à la spécialité «chirurgie»
 ```graphql
+mutation CreatePraticienLierChirurgie {
+    create_Praticien_item(data: {
+        nom: "Rig",
+        prenom: "Sett",
+        ville: "Noxus",
+        email: "sett@test.com",
+        telephone: "0600000003",
+        specialite_id: {
+            id: "6" 
+        }
+    }) {
+        id
+        nom
+        specialite_id {
+            id
+            libelle
+        }
+    }
+}
 ```
 ![Résultat mutation6](./Images_Requetes/Mutation_6.png)
 
 7) Modifier le premier praticien créé pour le rattacher à une structure existante
 ```graphql
+mutation UpdatePraticienVersStructure {
+    update_Praticien_item(
+        id: "63547e4d-2aa8-45a8-81fb-d88aa5414114",
+        data: {
+            structure_id: {
+                id: "80756589-93f3-3ab7-92dd-377dbea5ea4d"
+            }
+        }
+    ) {
+        id
+        nom
+        structure_id {
+            id
+            nom
+            ville
+        }
+    }
+}
 ```
 ![Résultat mutation7](./Images_Requetes/Mutation_7.png)
 
