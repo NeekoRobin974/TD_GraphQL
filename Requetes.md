@@ -302,7 +302,7 @@ mutation CreatePraticienEtSpecialite {
             libelle
         }
     }
-}
+} 
 ```
 ![Résultat mutation5](./Images_Requetes/Mutation_5.png)
 
