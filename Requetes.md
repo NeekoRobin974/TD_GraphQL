@@ -108,7 +108,6 @@ query {
 ```
 ![Résultat requête 6](./Images_Requetes/requete_6.png)
 
-
 7) Requête retournant une liste de praticiens installés à Paris et une liste de praticiens installés à Bourdon-les-Bains ; utiliser des alias
 
 ```graphql
@@ -137,7 +136,7 @@ PraticiensParis: Praticien(filter: { ville: { _eq: "Paris" } }) {
 ![Résultat requête 7](./Images_Requetes/requete_7-2.png)
 ![Résultat requête 7](./Images_Requetes/requete_7-1.png)
 
-8)Transformer la requête précédente de façon à utiliser un fragment correspondant aux champs
+8) Transformer la requête précédente de façon à utiliser un fragment correspondant aux champs
 du résultat.
 ```graphql
 fragment champsPraticien on Praticien {
@@ -161,9 +160,7 @@ query {
 ```
 ![Résultat requête 8](./Images_Requetes/requete_8.png)
 
-
-
-9)Transformer la requête 3 pour utiliser une variable de façon à paramétrer la requête par le
+9) Transformer la requête 3 pour utiliser une variable de façon à paramétrer la requête par le
 nom de la ville souhaitée.
 ```graphql
 query Requete9($ville: String!) {
@@ -182,6 +179,8 @@ query Requete9($ville: String!) {
 
 10) Liste des structures, en indiquant leur nom et ville,  en ajoutant la liste des praticiens attachés à chaque structure en indiquant leur nom, prénom, email ainsi que le libellé de leur spécialité.
 
+
+
 ## Autorisations dans Directus
 Sur Postman, les tables MoyenPaiement et MotifVisite disparaissent du schema si on met NoAuth.
 
@@ -197,7 +196,6 @@ query MoyenPaiement {
 ![Résultat requête 2.1](./Images_Requetes/requete_2.1.png)
 Si on se met en NoAuth :
 ![Résultat requête 2.1 NoAuth](./Images_Requetes/requete_2.1_NoAuth.png)
-
 
 2) Lister les spécialités en indiquant les motifs de visite associés à chacune (utilisateur utilisant un token JWT)
 
@@ -219,9 +217,9 @@ query {
 ![Résultat requête 2.2 NoAuth](./Images_Requetes/requete_2.2.png)
 
 
+
 ## Migrations:
 1) Créer la specialité «cardiologie»
-
 ```
 mutation CreateSpecialite {
   create_Specialite_item(data: { libelle: "cardiologie" }) {
@@ -233,7 +231,6 @@ mutation CreateSpecialite {
 ![Résultat mutation1](./Images_Requetes/Mutation_1.png)
 
 2) Créer un praticien: nom, prénom, ville, email, téléphone
-
 ```
 mutation CreatePraticien {
   create_Praticien_item(data: { nom: "cardiologie", prenom: "Jean", ville: "Paris", email: "Jean@test.com", telephone: "0610101010" }) {
@@ -247,8 +244,8 @@ mutation CreatePraticien {
 }
 ```
 ![Résultat mutation2](./Images_Requetes/Mutation_2.png)
-3) Modifier le praticien pour le rattacher à la spécialité «cardiologie»
 
+3) Modifier le praticien pour le rattacher à la spécialité «cardiologie»
 ```
 mutation ModifierPraticien {
   update_Praticien_item(id:"ddf74994-7606-4de3-8306-4a943f6ba703", data: { specialite_id: {id:"6"}}) {
@@ -358,5 +355,10 @@ mutation UpdatePraticienVersStructure {
 
 8) Supprimer les deux derniers praticiens créés.
 ```graphql
+mutation DeletePraticiens {
+    delete_Praticien_items(ids: ["63547e4d-2aa8-45a8-81fb-d88aa5414114", "4af543f0-9f19-4f0c-bc4d-fb9130f33530"]) {
+        ids
+    }
+}
 ```
 ![Résultat mutation8](./Images_Requetes/Mutation_8.png)
